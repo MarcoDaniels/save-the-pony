@@ -57,9 +57,12 @@
                     </table>
                 </div>
             </div>
+            <div>
+                <a @click="create()">new</a> {{ created }}
+            </div>
 
             <div class="row" v-if=moveResult>
-                <div class="col-sm-12">                    
+                <div class="col-sm-12">
                     {{ moveResult.state }} 
                     <br/>
                     {{ moveResult.state_result }}

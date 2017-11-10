@@ -33,11 +33,39 @@ namespace save_the_pony.Controllers
                 }
             }
         }
+
+        [HttpGet("[action]")]
+        public IActionResult start(StartData maze) {
+            var testing = JsonConvert.SerializeObject(maze).Replace("_","-");
+            return Ok(testing);
+
+            using (var client = new HttpClient())
+            {
+                try
+                {
+                    client.BaseAddress = new Uri("https://ponychallenge.trustpilot.com/pony-challenge/maze/");
+                    var movement = JsonConvert.SerializeObject(maze).Replace("_","-");
+                    var response = client.PostAsync(
+                        $"",
+                        new StringContent(
+                            movement,
+                            System.Text.Encoding.UTF8,
+                            "application/json")
+                        ).Result;
+
+                    var stringResult = response.Content.ReadAsStringAsync().Result.Replace("-","_");
+
+                    return Ok(stringResult);
+                } catch (HttpRequestException httpRequestException) {
+                    return BadRequest($"Error getting movement from ponychallenge: {httpRequestException}");
+                }
+            }
+        }
         
         [HttpGet("[action]/{direction}")]
         public IActionResult movement(string direction)
         {
-            var jsonPost = new MoveData();
+            var jsonPost = new MovementsData();
             jsonPost.direction = direction;
 
             using (var client = new HttpClient())
@@ -63,8 +91,15 @@ namespace save_the_pony.Controllers
             }
         }
 
-        private class MoveData {
+        public class MovementsData {
             public string direction;
+        }
+
+        public class StartData {            
+            public int maze_width;
+            public int maze_height;
+            public string maze_plaryer_name;
+            public int difficulty;
         }
     }
 }
