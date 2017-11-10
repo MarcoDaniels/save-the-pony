@@ -1,0 +1,22 @@
+.maze {    
+    border-right: 1px black solid;
+    border-bottom: 1px black solid;
+}
+.row-controllers {    
+    margin: auto;
+    max-width: 140px;
+}
+.controllers {
+    font-size: 30px;
+}
+.maze-row {
+    height: 30px;
+    width: 30px;
+    text-align: center;
+}
+.north {
+    border-top: 1px solid black;
+}
+.west {
+    border-left: 1px solid black;
+}
