@@ -7,6 +7,7 @@ implement a [pony](https://ponychallenge.trustpilot.com/api-docs/index.html) pla
 * vue.js
 
 ## TODO
-[] endpoint to create new instance of the game
-[] controls for new game creation (name, size, dificulty)
-[] use keyboard to move around
+* [] endpoint to create new instance of the game
+* [] controls for new game creation (name, size, dificulty)
+* [] use keyboard to move around
+* [] cache maze id on the browser if reloading the page
