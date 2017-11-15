@@ -1,27 +1,21 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
-namespace save_the_pony.Controllers
-{
+namespace save_the_pony.Controllers {
+    
     [Route("api/[controller]")]
-    public class MazeController : Controller
-    {
-        private string Maze_Id = "a561f55c-e2a7-4e80-a829-35f8ac7517a6";
-        // old a561f55c-e2a7-4e80-a829-35f8ac7517a6
+    public class MazeController : Controller {
+        
+        private string Maze_Id = "a561f55c-e2a7-4e80-a829-35f8ac751"; 
+        // a561f55c-e2a7-4e80-a829-35f8ac7517a6
         // 0c3e8fda-426c-43dd-9261-e539f6e748ae
 
         [HttpGet("[action]")]
-        public IActionResult status()
-        {
-            using (var client = new HttpClient())
-            {
-                try
-                {
+        public IActionResult Status() {
+            using (var client = new HttpClient()) {
+                try {
                     client.BaseAddress = new Uri("https://ponychallenge.trustpilot.com/pony-challenge/maze/");
                     var response = client.GetAsync($"{Maze_Id}").Result;                    
 
@@ -34,27 +28,17 @@ namespace save_the_pony.Controllers
             }
         }
 
-        [HttpGet("[action]")]
-        public IActionResult start(StartData maze) {
-            var testing = JsonConvert.SerializeObject(maze).Replace("_","-");
-            return Ok(testing);
+        [HttpPost("[action]")]
+        public IActionResult Start([FromBody] StartData maze) {
+            using (var client = new HttpClient()) {
+                try {
+                    client.BaseAddress = new Uri("https://ponychallenge.trustpilot.com/pony-challenge/maze");
+                    var newMaze = JsonConvert.SerializeObject(maze).Replace("_","-");
+                    var httpContent = new StringContent(newMaze, System.Text.Encoding.UTF8, "application/json");
+                    var response = client.PostAsync($"", httpContent).Result;
 
-            using (var client = new HttpClient())
-            {
-                try
-                {
-                    client.BaseAddress = new Uri("https://ponychallenge.trustpilot.com/pony-challenge/maze/");
-                    var movement = JsonConvert.SerializeObject(maze).Replace("_","-");
-                    var response = client.PostAsync(
-                        $"",
-                        new StringContent(
-                            movement,
-                            System.Text.Encoding.UTF8,
-                            "application/json")
-                        ).Result;
-
-                    var stringResult = response.Content.ReadAsStringAsync().Result.Replace("-","_");
-
+                    var stringResult = response.Content.ReadAsStringAsync().Result;
+                    
                     return Ok(stringResult);
                 } catch (HttpRequestException httpRequestException) {
                     return BadRequest($"Error getting movement from ponychallenge: {httpRequestException}");
@@ -63,17 +47,14 @@ namespace save_the_pony.Controllers
         }
         
         [HttpGet("[action]/{direction}")]
-        public IActionResult movement(string direction)
-        {
-            var jsonPost = new MovementsData();
-            jsonPost.direction = direction;
+        public IActionResult Movement(string direction) {
+            var jsonPost = new MovementsData {direction = direction};
 
-            using (var client = new HttpClient())
-            {
-                try
-                {
+            using (var client = new HttpClient()) {
+                try {
                     client.BaseAddress = new Uri("https://ponychallenge.trustpilot.com/pony-challenge/maze/");
                     var movement = JsonConvert.SerializeObject(jsonPost);
+                    
                     var response = client.PostAsync(
                         $"{Maze_Id}",
                         new StringContent(
@@ -91,15 +72,15 @@ namespace save_the_pony.Controllers
             }
         }
 
-        public class MovementsData {
+        private class MovementsData {
             public string direction;
         }
 
-        public class StartData {            
-            public int maze_width;
-            public int maze_height;
-            public string maze_plaryer_name;
+        public class StartData {
             public int difficulty;
+            public int maze_height;
+            public int maze_width;
+            public string maze_player_name;
         }
     }
 }
