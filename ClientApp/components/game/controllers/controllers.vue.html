@@ -1,0 +1,45 @@
+<template>
+    <div class="row row-controllers">
+        <div class="col-sm-12">
+            <table class="controllers">
+                <tr>
+                    <td></td>
+                    <td>
+                        <a @click="move('north')">
+                            <span class="glyphicon glyphicon-triangle-top"></span>
+                        </a>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>
+                        <a @click="move('west')">
+                            <span class="glyphicon glyphicon-triangle-left"></span>
+                        </a>
+                    </td>
+                    <td>
+                        <a @click="move('stay')">
+                            <span class="glyphicon glyphicon glyphicon-user"></span>
+                        </a>
+                    </td>
+                    <td>
+                        <a @click="move('east')">
+                            <span class="glyphicon glyphicon-triangle-right"></span>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <a @click="move('south')">
+                            <span class="glyphicon glyphicon-triangle-bottom"></span>
+                        </a>
+                    </td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</template>
+
+<script src="./controllers.ts"></script>

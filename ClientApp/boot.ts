@@ -6,8 +6,15 @@ import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
 const routes = [
-    // use maze id for maze route
-    { path: '/', component: require('./components/game/maze.vue.html') }
+    { 
+        path: '/', 
+        component: require('./components/home/home.vue.html') 
+    },
+    { 
+        path: '/maze/:id', 
+        component: require('./components/game/game.vue.html'), 
+        props: true
+    }
 ];
 
 new Vue({

@@ -12,12 +12,12 @@ namespace save_the_pony.Controllers {
         // a561f55c-e2a7-4e80-a829-35f8ac7517a6
         // 0c3e8fda-426c-43dd-9261-e539f6e748ae
 
-        [HttpGet("[action]")]
-        public IActionResult Status() {
+        [HttpGet("[action]/{mazeId}")]
+        public IActionResult Status(string mazeId) {
             using (var client = new HttpClient()) {
                 try {
                     client.BaseAddress = new Uri("https://ponychallenge.trustpilot.com/pony-challenge/maze/");
-                    var response = client.GetAsync($"{Maze_Id}").Result;                    
+                    var response = client.GetAsync($"{mazeId}").Result;                    
 
                     var stringResult = response.Content.ReadAsStringAsync().Result.Replace("-","_");
 
