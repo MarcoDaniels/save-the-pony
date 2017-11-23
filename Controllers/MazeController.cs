@@ -7,10 +7,6 @@ namespace save_the_pony.Controllers {
     
     [Route("api/[controller]")]
     public class MazeController : Controller {
-        
-        private string Maze_Id = "a561f55c-e2a7-4e80-a829-35f8ac751"; 
-        // a561f55c-e2a7-4e80-a829-35f8ac7517a6
-        // 0c3e8fda-426c-43dd-9261-e539f6e748ae
 
         [HttpGet("[action]/{mazeId}")]
         public IActionResult Status(string mazeId) {
@@ -46,9 +42,9 @@ namespace save_the_pony.Controllers {
             }
         }
         
-        [HttpGet("[action]/{direction}")]
-        public IActionResult Movement(string direction) {
-            var jsonPost = new MovementsData {direction = direction};
+        [HttpPost("[action]/{maze_id}/{direction}")]
+        public IActionResult Movement(string mazeId, string direction) {
+            var jsonPost = new MovementsData { direction = direction };
 
             using (var client = new HttpClient()) {
                 try {
@@ -56,7 +52,7 @@ namespace save_the_pony.Controllers {
                     var movement = JsonConvert.SerializeObject(jsonPost);
                     
                     var response = client.PostAsync(
-                        $"{Maze_Id}",
+                        $"{mazeId}",
                         new StringContent(
                             movement,
                             System.Text.Encoding.UTF8,

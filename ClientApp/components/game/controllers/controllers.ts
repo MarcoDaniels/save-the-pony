@@ -5,7 +5,7 @@ import { Component } from 'vue-property-decorator';
     name: 'Controllers'
 })
 export default class ControllersComponent extends Maze {
-
+    
     move(direction: string) {
         this.movePony(direction);
     }

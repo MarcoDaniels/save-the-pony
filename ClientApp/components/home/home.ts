@@ -10,32 +10,27 @@ class createMazeData {
 }
 
 @Component({
-    name: 'Home',
-    components: {
-        GameComponent: require('../game/game.vue.html')
-    }
+    name: 'Home'
 })
 export default class HomeComponent extends Vue {
     data: createMazeData = new createMazeData;
-    response: string = '';
+    createStatus: string = '';
     
-    mounted() {
-        this.data.maze_width= 0;
-        this.data.maze_height = 0;
-        this.data.maze_player_name = "";
-        this.data.difficulty = 0;
-    }
-    
-    submitForm($event: any) {
+    createMaze($event: any) {
         $event.preventDefault();
-        console.log(this.data);
         
+        // create new maze
         axios.post('api/maze/start', this.data)
-            .then(function (response) {
-                console.log(response.data);
+            .then(response => {
+                if (response.data.hasOwnProperty("maze_id")) {
+                    let mazeId = response.data.maze_id;
+                    this.$router.push('/maze/'  + mazeId);
+                } else {
+                    this.createStatus = response.data;    
+                }
             })
-            .catch(function (error) {
-                console.log(error);
+            .catch(error => {
+                console.warn(error);
             });
     }
 }
