@@ -1,7 +1,41 @@
 <template>
     <div class="row">
-        <div class="col-sm-12">
-            Form to start new game
+        <div class="col-sm-6">
+            <form v-on:submit="submitForm">
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="maze-player-name">Player Name</label>
+                        <div class="col-10">
+                            <input v-model="data.maze_player_name" type="text"
+                                   class="form-control" id="maze-player-name">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="maze-width">Maze Width</label>
+                        <input v-model="data.maze_width" type="number" 
+                               class="form-control" id="maze-width">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="maze-height">Maze Height</label>
+                        <input v-model="data.maze_height" type="number"
+                               class="form-control" id="maze-height">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="difficulty">Difficulty</label>
+                        <input v-model="data.difficulty" type="number" 
+                               class="form-control" id="difficulty">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <button type="submit" class="btn btn-primary">
+                            Start New Game
+                        </button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </template>
