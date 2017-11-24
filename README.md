@@ -16,3 +16,11 @@ implement a [pony](https://ponychallenge.trustpilot.com/api-docs/index.html) pla
 * [ ] use keyboard to move around
 * [ ] use better naming for MazeController
 * [ ] cache maze id on the browser if reloading the page
+
+
+## docker
+```
+$ docker build -t aspnetapp .
+
+$ docker run -it --rm -p 8000:80 --name save-the-pony aspnetapp
+```
