@@ -1,10 +1,10 @@
 <template>
-    <div class="row" style="margin-top: 30px;">
+    <div v-if="mazeId" class="row" style="margin-top: 30px;">
         <div class="col-sm-6">
-            <controllers-component></controllers-component>
+            <controllers-component :maze-id="mazeId"></controllers-component>
         </div>
         <div class="col-sm-6">
-            <maze-component v-if="mazeId" v-bind:maze-id="mazeId"></maze-component>
+            <maze-component :maze-id="mazeId"></maze-component>
         </div>
     </div>
 </template>

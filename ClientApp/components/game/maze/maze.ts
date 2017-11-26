@@ -20,7 +20,7 @@ export default class MazeComponent extends Vue {
     
     mounted() {
         // check if we have the id before anythig
-        console.log(this.$props);
+        console.log('mounted ' + this.$props.mazeId);
         if (this.$props.mazeId) {
             this.mazeData.maze_id = this.$props.mazeId;
             this.getMazeData();
@@ -28,6 +28,7 @@ export default class MazeComponent extends Vue {
     }
     
     getMazeData() {
+        console.log('get maze data');
         axios.get('api/maze/status/' + this.mazeData.maze_id + '/')
             .then(response => response.data as Promise<MazeData>)
             .then(data => this.mazeData = data)
@@ -36,29 +37,16 @@ export default class MazeComponent extends Vue {
             });
     }
 
-    movePony(direction: string) {
-        console.log(direction);
-        console.log(this.$props.mazeId);
-        console.log(this.mazeData.maze_id);
-        // use post for movement
-        /*
-        fetch('api/maze/movement/' + direction)
-            .then(response => response.json() as Promise<MoveResult>)
-            .then(data => { this.moveResult = data; })
-            .then(fetch => this.mazeStatus(this.$props.id));
-
-        this.moveTo = direction;
-        */
-        let urlParams = this.mazeData.maze_id + '/' + direction; 
+    movePony(mazeId: string, direction: string) {
         
+        let urlParams = mazeId + '/' + direction;
         axios.post('api/maze/movement/' + urlParams)
             .then(response => {
                 console.log(response);
+                this.getMazeData();
             })
             .catch(error => {
                 console.warn(error);
             });
-        
-        //this.getMazeData();
-        }
+    }
 }

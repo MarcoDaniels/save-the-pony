@@ -2,11 +2,14 @@ import Maze from '../maze/maze';
 import { Component } from 'vue-property-decorator';
 
 @Component({
-    name: 'Controllers'
+    name: 'Controllers',
+    props: ['mazeId'],
 })
 export default class ControllersComponent extends Maze {
     
     move(direction: string) {
-        this.movePony(direction);
+        if (this.$props.mazeId) {
+            this.movePony(this.$props.mazeId, direction);
+        }
     }
 }
