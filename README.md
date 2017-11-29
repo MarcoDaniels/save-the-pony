@@ -12,10 +12,10 @@ implement a [pony](https://ponychallenge.trustpilot.com/api-docs/index.html) pla
 * [x] use axios for all the requests to controllers
 * [x] landing page when no game is loaded
 * [x] controls for new game creation (name, size, dificulty)
-* [ ] fix maze.move method to use maze id
+* [x] fix maze.move method to use maze id
 * [ ] use keyboard to move around
 * [ ] use better naming for MazeController
-* [ ] cache maze id on the browser if reloading the page
+* [ ] make controllers and maze pretty
 
 
 ## docker

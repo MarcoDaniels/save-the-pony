@@ -10,12 +10,13 @@ namespace save_the_pony.Controllers {
 
         [HttpGet("[action]/{mazeId}")]
         public IActionResult Status(string mazeId) {
+            var id = mazeId.Replace("_", "-");
             using (var client = new HttpClient()) {
                 try {
                     client.BaseAddress = new Uri("https://ponychallenge.trustpilot.com/pony-challenge/maze/");
-                    var response = client.GetAsync($"{mazeId}").Result;                    
+                    var response = client.GetAsync($"{id}").Result;                    
 
-                    var stringResult = response.Content.ReadAsStringAsync().Result;
+                    var stringResult = response.Content.ReadAsStringAsync().Result.Replace("-","_");
 
                     return Ok(stringResult);
                 } catch (HttpRequestException httpRequestException) {
@@ -44,6 +45,7 @@ namespace save_the_pony.Controllers {
         
         [HttpPost("[action]/{mazeId}/{direction}")]
         public IActionResult Movement(string mazeId, string direction) {
+            var id = mazeId.Replace("_", "-");
             var jsonPost = new MovementsData { direction = direction };
             using (var client = new HttpClient()) {
                 try {
@@ -51,7 +53,7 @@ namespace save_the_pony.Controllers {
                     var movement = JsonConvert.SerializeObject(jsonPost);
                     
                     var response = client.PostAsync(
-                        $"{mazeId}",
+                        $"{id}",
                         new StringContent(
                             movement,
                             System.Text.Encoding.UTF8,

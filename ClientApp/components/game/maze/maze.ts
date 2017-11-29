@@ -29,6 +29,7 @@ export default class MazeComponent extends Vue {
     
     getMazeData() {
         console.log('get maze data');
+        console.log(this.mazeData.maze_id);
         axios.get('api/maze/status/' + this.mazeData.maze_id + '/')
             .then(response => response.data as Promise<MazeData>)
             .then(data => this.mazeData = data)
@@ -37,9 +38,8 @@ export default class MazeComponent extends Vue {
             });
     }
 
-    movePony(mazeId: string, direction: string) {
-        
-        let urlParams = mazeId + '/' + direction;
+    move(direction: string) {
+        let urlParams = this.mazeData.maze_id + '/' + direction;
         axios.post('api/maze/movement/' + urlParams)
             .then(response => {
                 console.log(response);

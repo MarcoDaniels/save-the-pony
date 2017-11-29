@@ -5,7 +5,6 @@ import { Component } from 'vue-property-decorator';
     name: 'Game',
     props: ['id'],
     components: {
-        ControllersComponent: require('./controllers/controllers.vue.html'),
         MazeComponent: require('./maze/maze.vue.html')
     },
 })
