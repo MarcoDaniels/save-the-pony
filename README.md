@@ -13,9 +13,11 @@ implement a [pony](https://ponychallenge.trustpilot.com/api-docs/index.html) pla
 * [x] landing page when no game is loaded
 * [x] controls for new game creation (name, size, dificulty)
 * [x] fix maze.move method to use maze id
-* [ ] use keyboard to move around
-* [ ] use better naming for MazeController
+* [x] use keyboard to move around
+* [x] use better naming for MazeController
 * [ ] make controllers and maze pretty
+* [ ] show state result when moving
+
 
 
 ## docker

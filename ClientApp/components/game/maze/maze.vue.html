@@ -1,46 +1,6 @@
 <template>
     <div class="row">
         <div class="col-sm-6">
-            <table class="controllers">
-                <tr>
-                    <td></td>
-                    <td>
-                        <a @click="move('north')">
-                            <span class="glyphicon glyphicon-triangle-top"></span>
-                        </a>
-                    </td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>
-                        <a @click="move('west')">
-                            <span class="glyphicon glyphicon-triangle-left"></span>
-                        </a>
-                    </td>
-                    <td>
-                        <a @click="move('stay')">
-                            <span class="glyphicon glyphicon glyphicon-user"></span>
-                        </a>
-                    </td>
-                    <td>
-                        <a @click="move('east')">
-                            <span class="glyphicon glyphicon-triangle-right"></span>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>
-                        <a @click="move('south')">
-                            <span class="glyphicon glyphicon-triangle-bottom"></span>
-                        </a>
-                    </td>
-                    <td></td>
-                </tr>
-            </table>
-        </div>
-        
-        <div class="col-sm-6">
             <table v-if="mazeData.data" class="maze">
                 <tbody>
                 <tr v-for="height in mazeData.size[1]">
@@ -61,6 +21,46 @@
                     </td>
                 </tr>
                 </tbody>
+            </table>
+        </div>
+
+        <div class="col-sm-2">
+            <table class="controllers">
+                <tr>
+                    <td></td>
+                    <td colspan="3">
+                        <a @click="movePony('north')">
+                            <span class="glyphicon glyphicon-triangle-top"></span>
+                        </a>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>
+                        <a @click="movePony('west')">
+                            <span class="glyphicon glyphicon-triangle-left"></span>
+                        </a>
+                    </td>
+                    <td>
+                        <a @click="movePony('stay')">
+                            <span class="glyphicon glyphicon glyphicon-user"></span>
+                        </a>
+                    </td>
+                    <td>
+                        <a @click="movePony('east')">
+                            <span class="glyphicon glyphicon-triangle-right"></span>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <a @click="movePony('south')">
+                            <span class="glyphicon glyphicon-triangle-bottom"></span>
+                        </a>
+                    </td>
+                    <td></td>
+                </tr>
             </table>
         </div>
     </div>

@@ -17,34 +17,69 @@ class MoveResult {
 })
 export default class MazeComponent extends Vue {
     mazeData: MazeData = new MazeData;
+
+    created() {
+        window.addEventListener('keydown', this.keyDown);
+    }
     
     mounted() {
         // check if we have the id before anythig
-        console.log('mounted ' + this.$props.mazeId);
         if (this.$props.mazeId) {
             this.mazeData.maze_id = this.$props.mazeId;
             this.getMazeData();
         }
     }
+
+    /**
+     * listens to key down and moves pony
+     * @param $event
+     */
+    keyDown($event: any) {
+        let key = $event.keyCode;
+        switch (key) {
+            case 38: { // up key
+                this.movePony('north');
+                break;
+            }
+            case 40: { // down key
+                this.movePony('south');
+                break;
+            }
+            case 37: { // left key
+                this.movePony('west');
+                break;
+            }
+            case 39: { // right key
+                this.movePony('east');
+                break;
+            }
+            case 32: { // space key
+                this.movePony('stay');
+                break;
+            }
+            default: {
+                this.getMazeData();
+                break;
+            }
+        }
+    }
     
-    getMazeData() {
-        console.log('get maze data');
-        console.log(this.mazeData.maze_id);
-        axios.get('api/maze/status/' + this.mazeData.maze_id + '/')
-            .then(response => response.data as Promise<MazeData>)
-            .then(data => this.mazeData = data)
+    movePony(direction: string) {
+        let urlParams = this.mazeData.maze_id + '/' + direction;
+        axios.post('api/maze/movepony/' + urlParams)
+            .then(response => {
+                console.log(response);
+                this.getMazeData();
+            })
             .catch(error => {
                 console.warn(error);
             });
     }
 
-    move(direction: string) {
-        let urlParams = this.mazeData.maze_id + '/' + direction;
-        axios.post('api/maze/movement/' + urlParams)
-            .then(response => {
-                console.log(response);
-                this.getMazeData();
-            })
+    getMazeData() {
+        axios.get('api/maze/status/' + this.mazeData.maze_id + '/')
+            .then(response => response.data as Promise<MazeData>)
+            .then(data => this.mazeData = data)
             .catch(error => {
                 console.warn(error);
             });
