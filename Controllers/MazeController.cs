@@ -63,7 +63,7 @@ namespace save_the_pony.Controllers {
                             "application/json")
                         ).Result;
 
-                    var stringResult = response.Content.ReadAsStringAsync().Result;
+                    var stringResult = response.Content.ReadAsStringAsync().Result.Replace("-","_");
                     
                     return Ok(stringResult);
                 } catch (HttpRequestException httpRequestException) {

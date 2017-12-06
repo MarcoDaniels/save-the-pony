@@ -17,6 +17,7 @@ class MoveResult {
 })
 export default class MazeComponent extends Vue {
     mazeData: MazeData = new MazeData;
+    moveResult: MoveResult = new MoveResult;
 
     created() {
         window.addEventListener('keydown', this.keyDown);
@@ -66,11 +67,11 @@ export default class MazeComponent extends Vue {
     
     movePony(direction: string) {
         let urlParams = this.mazeData.maze_id + '/' + direction;
+        
         axios.post('api/maze/movepony/' + urlParams)
-            .then(response => {
-                console.log(response);
-                this.getMazeData();
-            })
+            .then(response => response.data as Promise<MoveResult>)
+            .then(data => this.moveResult = data)
+            .then(data => { this.getMazeData(); })
             .catch(error => {
                 console.warn(error);
             });
