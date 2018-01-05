@@ -1,0 +1,11 @@
+nav.navbar-default {
+    border: 2px solid #0000ff;
+    background-color: #000000;
+    color: #ffffff;
+    font-weight: bold;
+}
+.navbar-default,
+.navbar-nav > li > a,
+.navbar-brand {
+    color: #ffffff !important;
+}

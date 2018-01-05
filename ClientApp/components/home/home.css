@@ -1,0 +1,41 @@
+input.form-control {
+    border: 1px solid #0000ff;
+    background-color: #000000;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+button.btn-start {
+    width: 100%;
+    background-color: #000000;
+    color: #ffffff;
+    border: 1px solid #0000ff;
+    font-weight: bold;
+}
+button.btn-start:hover,
+button.btn-start:active:focus,
+button.btn-start:focus {
+    background-color: #fdff00;
+    color: #0000ff;
+    border: 1px solid #0000ff;
+    font-weight: bold;
+}
+
+.select-start{
+    margin-top: 25px;
+}
+
+.info-box {
+    margin-top: 25px;
+    text-align: center;
+    border: 1px solid #0000ff;
+    font-weight: bold;
+    padding-top: 8px;
+}
+
+.blink-me {
+    animation: blinker 1s linear infinite;
+}
+@keyframes blinker {
+    50% { opacity: 0; }
+}
