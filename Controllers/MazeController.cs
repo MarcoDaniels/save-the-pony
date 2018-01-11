@@ -72,10 +72,16 @@ namespace save_the_pony.Controllers {
             }
         }
 
+        /**
+         * Movement data for pony
+         */
         private class MovementsData {
             public string direction;
         }
 
+        /**
+         * Starting data for challange
+         */
         public class StartData {
             public int difficulty;
             public int maze_height;

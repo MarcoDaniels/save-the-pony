@@ -3,13 +3,6 @@
     border-bottom: 1px solid #0000ff;
     margin: 0 auto;
 }
-.row-controllers {
-    margin: auto;
-    max-width: 140px;
-}
-.controllers {
-    font-size: 30px;
-}
 .maze-row {
     height: 30px;
     width: 30px;
@@ -28,4 +21,18 @@
     border: 1px solid #0000ff;
     padding: 10px;
     margin-bottom: 30px;
+}
+
+.row-controllers {
+    text-align: center;
+    font-weight: bold;
+    border: 1px solid #0000ff;
+    padding: 10px;
+    margin-top: 30px;
+}
+.row-controllers > a {
+    color: #ffffff;
+    font-size: 20px;
+    padding: 8px;
+    cursor: pointer;
 }

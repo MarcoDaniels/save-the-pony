@@ -9,7 +9,6 @@
                 </div>
             </div>
         </div>
-        
         <div class="row">
             <div class="col-sm-12">
                 <table v-if="mazeData.data" class="maze">
@@ -40,51 +39,24 @@
                 </table>
             </div>
         </div>
-        
-        <!--<div class="col-sm-6">
-            <div style="border: 1px solid lightgrey; min-height:200px; text-align: center">
-                <div style="background-color: darkgrey; color: red; padding: 20px;">
-                    <span>&nbsp;
-                        {{ moveResult.state_result }}
-                    </span>
-                </div>
-                
-                <div style="padding: 20px; text-align: left">
-                    <img width="20" height="20" src="../../../images/pony.png"> You
-                    <br/>
-                    <img width="20" height="20" src="../../../images/domokun.png"> Domo Kun
-                    <br/>
-                    <img width="20" height="20" src="../../../images/end.png"> Your Goal!!
-                </div>
-                
-                <div class="controllers">
-                    <div>
-                        <a @click="movePony('north')">
-                            <span class="glyphicon glyphicon-triangle-top"></span>
-                        </a>
-                    </div>
-                    <div>
-                        <a @click="movePony('west')">
-                            <span class="glyphicon glyphicon-triangle-left"></span>
-                        </a>
-                        <a @click="movePony('stay')">
-                            <span class="glyphicon glyphicon glyphicon-user"></span>
-                        </a>
-                        <a @click="movePony('east')">
-                            <span class="glyphicon glyphicon-triangle-right"></span>
-                        </a>
-                    </div>
-                    <div>
-                        <a @click="movePony('south')">
-                            <span class="glyphicon glyphicon-triangle-bottom"></span>
-                        </a>
-                    </div>
-                </div>
-                <div style="padding: 20px;">
-                    use controllers or keyboard (up, down, left, right and space)
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-4">
+                <div class="row-controllers">
+                    <a @click="movePony('west')">
+                        <span class="glyphicon glyphicon-arrow-left"></span>
+                    </a>
+                    <a @click="movePony('north')">
+                        <span class="glyphicon glyphicon-arrow-up"></span>
+                    </a>
+                    <a @click="movePony('south')">
+                        <span class="glyphicon glyphicon-arrow-down"></span>
+                    </a>
+                    <a @click="movePony('east')">
+                        <span class="glyphicon glyphicon-arrow-right"></span>
+                    </a>
                 </div>
             </div>
-        </div>-->
+        </div>
     </div>
 </template>
 
